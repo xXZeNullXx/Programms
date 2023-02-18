@@ -2,9 +2,9 @@ import PySimpleGUI as sg
 import subprocess
 
 layout = [[sg.Text("Select Program to install")]]
-if subprocess.call(['powershell', 'Get-WindowsPackage -Name 7zip']) != 0:
+if subprocess.call(['powershell', 'Get-WindowsPackage -Name 7zip.7zip']) != 0:
     layout.append([sg.Button("Install 7Zip", key="7Zip")])
-if subprocess.call(['powershell', 'Get-WindowsPackage -Name Brave']) != 0:
+if subprocess.call(['powershell', 'Get-WindowsPackage -Name Brave.Brave']) != 0:
     layout.append([sg.Button("Install Brave", key="Brave")])
 
 # Create the window
