@@ -5,6 +5,7 @@ import subprocess
 programs = {
     "7Zip": "7zip.7zip",
     "Brave": "Brave.Brave"
+    "VSCode" "Microsoft.VisualStudioCode"
 }
 
 # Check if the programs are already installed
