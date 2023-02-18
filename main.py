@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 import subprocess
 
-layout = [[sg.Text("Select Program to install")], [sg.Button("7Zip")], [sg.Button("Brave")]]
+layout = [[sg.Text("Select Program to install")], [sg.Button("Install 7Zip", key="7Zip")], [sg.Button("Install Brave", key="Brave")]]
 
 # Create the window
 window = sg.Window("Program", layout)
