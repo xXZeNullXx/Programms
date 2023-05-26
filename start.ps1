@@ -21,6 +21,8 @@ if (!(Get-Command winget -ErrorAction SilentlyContinue)) {
 } else {
     Write-Host "winget is already installed" -ForegroundColor $YELLOW
 }
+winget install python3
+pip install PySimpleGUI
 
 # Run main.py
 python .\main.py
