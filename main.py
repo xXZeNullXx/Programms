@@ -66,13 +66,6 @@ while True:
         # Remove the program from the dictionary
         del programs[event]
 
-        # Update the button status
-        for element in window.all_elements():
-            if element.key in programs:
-                element.update(visible=True)
-            else:
-                element.update(visible=False)
-
     if event == sg.WINDOW_CLOSED:
         break
 
