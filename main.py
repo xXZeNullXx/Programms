@@ -41,7 +41,7 @@ programs = {
 # Check if the programs are already installed
 for program_name, program_id in programs.items():
     try:
-        subprocess.check_output(["powershell", "-Command", f"winget show {program_id}"])
+        subprocess.check_output(["winget", "show", program_id])
         programs[
             program_name
         ] = None  # Set to None to hide the button if already installed
@@ -69,9 +69,7 @@ while True:
         # Re-check if the installed program to update the button status
         for program_name, program_id in programs.items():
             try:
-                subprocess.check_output(
-                    ["powershell", "-Command", f"winget show {program_id}"]
-                )
+                subprocess.check_output(["winget", "show", program_id])
                 programs[program_name] = None
             except subprocess.CalledProcessError:
                 pass
