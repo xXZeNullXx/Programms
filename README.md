@@ -1,4 +1,5 @@
 # Programs
+
 ```git
-git pull https://github.com/xXZeNullXx/Programs.git
+git clone https://github.com/xXZeNullXx/Programs.git
 ```
