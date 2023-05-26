@@ -39,14 +39,15 @@ programs = {
 }
 
 # Check if the programs are already installed
-for program_name, program_id in programs.items():
-    try:
-        subprocess.check_output(["winget", "show", program_id])
-        programs[
-            program_name
-        ] = None  # Set to None to hide the button if already installed
-    except subprocess.CalledProcessError:
-        pass
+ps_command = "winget list"
+installed_programs = (
+    subprocess.check_output(["powershell", "-Command", ps_command])
+    .decode()
+    .splitlines()
+)
+for program_name in programs.keys():
+    if any(program_name.lower() in program.lower() for program in installed_programs):
+        programs[program_name] = None  # Set to None to hide the button
 
 # Create the layout
 layout = [[sg.Text("Select Program to install")]]
@@ -67,12 +68,20 @@ while True:
         subprocess.call(["powershell", "-Command", ps_command])
 
         # Re-check if the installed program to update the button status
-        for program_name, program_id in programs.items():
-            try:
-                subprocess.check_output(["winget", "show", program_id])
+        ps_command = "winget list"
+        installed_programs = (
+            subprocess.check_output(["powershell", "-Command", ps_command])
+            .decode()
+            .splitlines()
+        )
+        for program_name in programs.keys():
+            if any(
+                program_name.lower() in program.lower()
+                for program in installed_programs
+            ):
                 programs[program_name] = None
-            except subprocess.CalledProcessError:
-                pass
+            else:
+                programs[program_name] = f"{program_name}"
 
         # Update the button status
         for program_name, program_id in programs.items():
@@ -81,7 +90,7 @@ while True:
             else:
                 window[program_name].update(visible=False)
 
-    if event == sg.WINDOW_CLOSED:
+    if event == sg.WIN_CLOSED:
         break
 
 window.close()
